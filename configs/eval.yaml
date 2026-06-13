@@ -1,0 +1,29 @@
+# Segment 4 — evaluation harness (build_plan v3.1)
+
+eval_prompts_path: data/eval_set/prompts.jsonl
+eval_grid_size: 80
+factscore_max_claims: 12
+ragas_max_claims: 8
+verifier_model: hugging-quants/Meta-Llama-3.1-70B-Instruct-AWQ-INT4
+verifier_quantization: awq
+verifier_server_url: http://127.0.0.1:8765
+verifier_cache_path: runs/verifier_cache.jsonl
+verifier_default_backend: vllm   # serve with: scripts/serve_verifier.py --backend vllm
+
+verifier_vllm:
+  gpu_memory_utilization: 0.90
+  max_model_len: 2048
+  tensor_parallel_size: 2   # 70B AWQ needs ~2×24GB 4090s
+  max_tokens: 16
+  max_batch_size: 8
+  enforce_eager: true       # skip inductor compile (no python3-dev on host)
+bootstrap_resamples: 10000
+systems:
+  - zero_shot
+  - naive_rag
+  - graph_only
+  - rankrag_only
+  - full
+  - full_minus_graph
+  - full_minus_rerank
+  - full_minus_sft

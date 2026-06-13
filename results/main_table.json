@@ -1,0 +1,57 @@
+{
+  "systems": [
+    {
+      "system": "full",
+      "n_prompts": 80,
+      "factscore_mean": 0.2398015873015873,
+      "mock_generation": false,
+      "mock_verifier": false,
+      "mock_reranker": false,
+      "reference_overlap_mean": 0.3775375000000001,
+      "specificity_ratio_mean": 0.53962,
+      "index_mock_embed": false,
+      "verifier_url": "http://127.0.0.1:8765",
+      "sft_adapter_dir": "runs/seg5_sft_train_2026-06-05-0617/adapter",
+      "sft_run_dir": "runs/seg5_sft_train_2026-06-05-0617",
+      "sft_adapter_source": "latest_complete",
+      "generation_temperature": "0.4",
+      "generator_4bit": true,
+      "input_fingerprint": "37b066a93890ccd3b9f0f9e2999b282e0a429b2cd2bf369ad85c1f1b9223fe86"
+    },
+    {
+      "system": "full_minus_rerank",
+      "n_prompts": 80,
+      "factscore_mean": 0.22245535714285708,
+      "mock_generation": false,
+      "mock_verifier": false,
+      "mock_reranker": true,
+      "reference_overlap_mean": 0.3735475,
+      "specificity_ratio_mean": 0.5398637499999998,
+      "index_mock_embed": false,
+      "verifier_url": "http://127.0.0.1:8765",
+      "sft_adapter_dir": "runs/seg5_sft_train_2026-06-05-0617/adapter",
+      "sft_run_dir": "runs/seg5_sft_train_2026-06-05-0617",
+      "sft_adapter_source": "latest_complete",
+      "generation_temperature": "0.4",
+      "generator_4bit": true,
+      "input_fingerprint": "d95fa16e31187a871580e58c5a7938f8ce96681dec645821c8fd724d21bf54a8"
+    },
+    {
+      "system": "full_minus_sft",
+      "n_prompts": 80,
+      "factscore_mean": 0.4958333333333331,
+      "mock_generation": false,
+      "mock_verifier": false,
+      "mock_reranker": false,
+      "reference_overlap_mean": 0.27484125,
+      "specificity_ratio_mean": 0.63708125,
+      "index_mock_embed": false,
+      "verifier_url": "http://127.0.0.1:8765",
+      "generator_4bit": true,
+      "input_fingerprint": "e79196473b620ba07611599ed278a598bc1aa5230eb897ea79bbd407664f6b0e"
+    }
+  ],
+  "mock_generation": false,
+  "mock_verifier": false,
+  "verifier_url": "http://127.0.0.1:8765"
+}

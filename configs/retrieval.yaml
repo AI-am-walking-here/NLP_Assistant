@@ -1,0 +1,27 @@
+# Segment 3 — vector index + naive RAG (v3.1: no [CITE] in output)
+
+embedder: BAAI/bge-large-en-v1.5
+chunk_size: 512
+chunk_overlap: 64
+top_k: 8
+index_type: IndexFlatIP
+normalize_embeddings: true
+embed_batch_size: 32
+embed_device: auto   # cuda | cpu | auto
+
+# Keep chunk sizing aligned with the embedder tokenizer.
+tokenizer: BAAI/bge-large-en-v1.5
+
+paths:
+  chunks_parquet: data/chunks/chunks.parquet
+  chunk_ids_parquet: data/indices/chunk_ids.parquet
+  embeddings_npy: data/indices/embeddings.npy
+  faiss_index: data/indices/faiss.index
+  index_meta: data/indices/index_meta.json
+
+generation:
+  base_model: meta-llama/Llama-3.1-8B-Instruct
+  max_new_tokens: 384
+  temperature: 0.7
+  # Uses local 8B when weights exist under GROUNDED_MODELS_ROOT; else mock stub
+  mock_generation: false

@@ -1,0 +1,22 @@
+# Segment 6 — Graph RAG (build_plan v3.1)
+
+pilot_size: 500
+gpu_hour_gate: 50.0
+entity_types:
+  - method
+  - task
+  - dataset
+  - finding
+relation_types:
+  - proposes
+  - improves_on
+  - uses
+  - evaluated_on
+
+# Assumed 8B structured-extract wall time per chunk (gate extrapolation)
+seconds_per_chunk_estimate: 2.5
+
+paths:
+  pilot_ids: data/splits/graph_pilot_500.txt
+  pilot_triples: data/graph/pilot_triples.parquet
+  communities: data/graph/communities.parquet

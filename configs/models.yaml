@@ -1,0 +1,16 @@
+# Local model weights (rsync'd to university host). Hub IDs are fallbacks only.
+# Override root: export GROUNDED_MODELS_ROOT=/path/to/models
+
+root: /data/team1/models
+
+embedder:
+  hub_id: BAAI/bge-large-en-v1.5
+  local_dir: BAAI/bge-large-en-v1.5
+
+generator_8b:
+  hub_id: meta-llama/Llama-3.1-8B-Instruct
+  local_dir: meta-llama/Llama-3.1-8B-Instruct
+
+verifier_70b_awq:
+  hub_id: hugging-quants/Meta-Llama-3.1-70B-Instruct-AWQ-INT4
+  local_dir: hugging-quants/Meta-Llama-3.1-70B-Instruct-AWQ-INT4

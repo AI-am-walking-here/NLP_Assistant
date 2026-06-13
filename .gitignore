@@ -1,0 +1,103 @@
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- envs / secrets ---
+.env
+.env.local
+*.key
+*.pem
+.venv/
+venv/
+.pip-cache/
+.hf-cache/
+
+# --- editors ---
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# --- project artifacts (large, regenerable) ---
+data/parsed/
+data/chunks/
+data/indices/
+data/graph/
+data/s2_cache.jsonl
+data/parsed_manifest.jsonl
+data/archive/
+
+# Portable splits (ID lists only)
+data/splits/*
+!data/splits/
+!data/splits/*.txt
+
+# Portable training / eval JSONL (canonical paths for git push)
+data/sft/*
+!data/sft/
+!data/sft/README.md
+!data/sft/*.jsonl
+data/sft/shards/
+data/backups/
+
+data/rankrag/*
+!data/rankrag/
+!data/rankrag/*.jsonl
+
+data/eval_set/*
+!data/eval_set/
+!data/eval_set/README.md
+!data/eval_set/*.json
+!data/eval_set/*.jsonl
+data/eval_set/archived_per_prompt/*
+!data/eval_set/archived_per_prompt/
+!data/eval_set/archived_per_prompt/*.jsonl
+
+# Slim metadata exports (small, reproducibility)
+!data/parsed_valid.json
+!data/papers_enriched.jsonl
+
+# Baseline report bundles (MANIFEST + data + eval summaries; not full runs/)
+archive/*
+!archive/baseline_*/
+!archive/baseline_*/**
+
+# --- runs (per-experiment; large, regenerable) ---
+runs/
+
+# --- references (vendored externally; pinned commit) ---
+references/*/
+!references/README.md
+
+# --- wandb local ---
+wandb/
+
+# --- HF / model caches ---
+.cache/
+*.safetensors
+*.bin
+adapters/
+
+# --- misc temp ---
+*.tmp
+*.bak
+*.log
+
+# --- report output ---
+report/
+
+# --- demo frontend ---
+demo/node_modules/
+demo/.next/
+demo/out/
+demo/.tools/
+demo/.env.local

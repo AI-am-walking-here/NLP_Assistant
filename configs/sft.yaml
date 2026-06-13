@@ -1,0 +1,44 @@
+# Segment 5 — QLoRA SFT (build_plan v3.1)
+
+base_model: meta-llama/Llama-3.1-8B-Instruct
+lora_rank: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+learning_rate: 1.0e-4
+num_epochs: 2
+max_seq_len: 2048
+citation_count_min: 3
+
+# Data / prompts
+outline_source: body          # body | abstract
+prompt_mode: with_retrieval   # mixed | with_retrieval | no_retrieval
+retrieval_fraction: 1.0       # fraction of examples with retrieval block (mixed mode)
+retrieval_top_k: 8
+val_fraction: 0.05
+val_seed: 1337
+inference_temperature: 0.4    # eval with SFT adapter (lower than default 0.7)
+
+paths:
+  train_jsonl: data/sft/train.jsonl
+  val_jsonl: data/sft/val.jsonl
+  split_list: data/splits/sft.txt
+
+# FActScore-aligned DPO (scripts/build_sft_dpo_data.py → scripts/sft_dpo_train.py)
+dpo:
+  pairs_jsonl: data/sft/dpo_pairs.jsonl
+  beta: 0.1
+  learning_rate: 5.0e-5
+  num_epochs: 1
+  max_seq_len: 2048
+  max_prompt_length: 1536
+  gradient_accumulation_steps: 8
+  min_factscore_margin: 0.08
+  retrieval_top_k: 8
+  init_from_latest_sft: true
+  verifier_cache_path: runs/verifier_cache_dpo.jsonl
+  prompt_style: with_retrieval

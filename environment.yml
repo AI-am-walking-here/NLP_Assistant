@@ -1,0 +1,83 @@
+# Env name: NLPFinal. Large multi-channel solve (pytorch + nvidia + conda-forge).
+# If `conda env create -f environment.yml` hangs or exits with `Killed`, use mamba instead:
+#   conda install -n base mamba -c conda-forge -y
+#   mamba env create -f environment.yml
+#   conda activate NLPFinal
+name: NLPFinal
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+
+  # Core scientific stack
+  - numpy
+  - pandas
+  - pyarrow
+  - scipy
+  - scikit-learn
+
+  # Config + CLI + schema
+  - pyyaml
+  - click
+  - pydantic>=2.0
+  - python-dotenv
+  - tqdm
+
+  # Data acquisition (retained from Segment 1; unused after v3.1)
+  - boto3
+
+  # PyTorch + CUDA (5090 / 4090). Pin runtime to a known-good CUDA channel.
+  - pytorch>=2.3
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=12.1
+
+  # Retrieval / embeddings (Segment 3)
+  - faiss-cpu              # swap to faiss-gpu once index >1M and CPU build is the bottleneck
+  - sentence-transformers
+
+  # Graph (Segment 6, optional after pilot gate)
+  - networkx
+  - python-igraph
+  - leidenalg
+
+  # Dev + tracking
+  - pytest
+  - ipython
+  - jupyterlab
+  - wandb
+
+  - pip:
+      # HF stack — pip channel is more current than conda-forge for these
+      - transformers>=4.44
+      - peft>=0.12
+      - accelerate>=0.34
+      - bitsandbytes>=0.43
+      - trl>=0.10
+      - datasets>=2.20
+      - safetensors
+
+      # LaTeX parsing (Segment 2)
+      - pylatexenc>=2.10
+      - arxiv-latex-cleaner
+
+      # Eval (Segment 4) — ragas optional; headline path uses grounded BGE+verifier
+      - langchain-community>=0.3
+      - ragas
+      - rapidfuzz
+
+      # Grammar-constrained decoding (Segment 6)
+      - outlines
+
+      # Inference server for 70B FActScore verifier (Segment 4)
+      - vllm
+
+      # Demo (Segment 8)
+      - fastapi
+      - uvicorn[standard]
+
+      # Editable install of the project
+      - -e .

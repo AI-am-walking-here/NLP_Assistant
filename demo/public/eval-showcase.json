@@ -1,0 +1,76 @@
+{
+  "prompts": [
+    {
+      "id": "2009.13401",
+      "label": "Injecting Entity Types into Entity-Guided Text G…",
+      "title": "Injecting Entity Types into Entity-Guided Text Generation",
+      "outline": "- Introduction\n- Entity-related Text Generation\n- Word-to-text Generation\n- Entity-Guided Text Generation\n- Task Definition",
+      "gold_abstract": "Recent successes in deep generative modeling have led to significant advances\nin natural language generation (NLG). Incorporating entities into neural\ngeneration models has demonstrated great improvements by assisting to infer the\nsummary topic and to generate coherent content. To enhance the role of entity\nin NLG, in this paper, we aim to model the entity type in the decoding phase to\ngenerate contextual words accurately. We develop a novel NLG model to produce a\ntarget sequence based on a given list of entities. Our model has a multi-step\ndecoder that injects the entity types into the process of entity mention\ngeneration. Experiments on two public news datasets demonstrate type injection\nperforms better than existing type embedding concatenation baselines.",
+      "year": 2020,
+      "source": "unarxive"
+    },
+    {
+      "id": "2110.10261",
+      "label": "Learning Domain Specific Language Models for Aut…",
+      "title": "Learning Domain Specific Language Models for Automatic Speech\n  Recognition through Machine Translation",
+      "outline": "- Introduction\n- Dependability for ASR\n- Contributions\n- Automatic Speech Recognition\n- Machine Translation",
+      "gold_abstract": "Automatic Speech Recognition (ASR) systems have been gaining popularity in\nthe recent years for their widespread usage in smart phones and speakers.\nBuilding ASR systems for task-specific scenarios is subject to the availability\nof utterances that adhere to the style of the task as well as the language in\nquestion. In our work, we target such a scenario wherein task-specific text\ndata is available in a language that is different from the target language in\nwhich an ASR Language Model (LM) is expected. We use Neural Machine Translation\n(NMT) as an intermediate step to first obtain translations of the task-specific\ntext data. We then train LMs on the 1-best and N-best translations and study\nways to improve on such a baseline LM. We develop a procedure to derive word\nconfusion networks from NMT beam search graphs and evaluate LMs trained on\nthese confusion networks. With experiments on the WMT20 chat translation task\ndataset, we demonstrate that NMT confusion networks can help to reduce the\nperplexity of both n-gram and recurrent neural network LMs compared to those\ntrained only on N-best translations.",
+      "year": 2021,
+      "source": "unarxive"
+    },
+    {
+      "id": "2212.09879",
+      "label": "Unsigned Play by Milan Kundera? An Authorship At…",
+      "title": "Unsigned Play by Milan Kundera? An Authorship Attribution Study",
+      "outline": "- Introduction\n- History and Related Works\n- Materials and Methods\n- Results\n- Conclusions",
+      "gold_abstract": "In addition to being a widely recognised novelist, Milan Kundera has also\nauthored three pieces for theatre: The Owners of the Keys (Majitel\\'e\nkl\\'i\\v{c}\\r{u}, 1961), The Blunder (Pt\\'akovina, 1967), and Jacques and his\nMaster (Jakub a jeho p\\'an, 1971). In recent years, however, the hypothesis has\nbeen raised that Kundera is the true author of a fourth play: Juro\nJ\\'ano\\v{s}\\'ik, first performed in a 1974 production under the name of Karel\nSteigerwald, who was Kundera's student at the time. In this study, we make use\nof supervised machine learning to settle the question of authorship attribution\nin the case of Juro J\\'ano\\v{s}\\'ik, with results strongly supporting the\nhypothesis of Kundera's authorship.",
+      "year": 2022,
+      "source": "unarxive"
+    },
+    {
+      "id": "2110.05422",
+      "label": "Calibrate your listeners! Robust communication-b…",
+      "title": "Calibrate your listeners! Robust communication-based training for\n  pragmatic speakers",
+      "outline": "- Introduction\n- Approach\n- The problem of semantic drift\n- Diagnosing semantic drift\n- Countering semantic drift",
+      "gold_abstract": "To be good conversational partners, natural language processing (NLP) systems\nshould be trained to produce contextually useful utterances. Prior work has\ninvestigated training NLP systems with communication-based objectives, where a\nneural listener stands in as a communication partner. However, these systems\ncommonly suffer from semantic drift where the learned language diverges\nradically from natural language. We propose a method that uses a population of\nneural listeners to regularize speaker training. We first show that language\ndrift originates from the poor uncertainty calibration of a neural listener,\nwhich makes high-certainty predictions on novel sentences. We explore ensemble-\nand dropout-based populations of listeners and find that the former results in\nbetter uncertainty quantification. We evaluate both population-based objectives\non reference games, and show that the ensemble method with better calibration\nenables the speaker to generate pragmatic utterances while scaling to a large\nvocabulary and generalizing to new games and listeners.",
+      "year": 2021,
+      "source": "unarxive"
+    },
+    {
+      "id": "2310.20195",
+      "label": "Generating Continuations in Multilingual Idiomat…",
+      "title": "Generating Continuations in Multilingual Idiomatic Contexts",
+      "outline": "- Introduction\n- Related Work\n- Idioms-related Classification Tasks\n- Idioms-related Generative Tasks\n- Problem Description",
+      "gold_abstract": "The ability to process idiomatic or literal multiword expressions is a crucial aspect of understanding and generating any language. The task of generating contextually relevant continuations for narratives containing idiomatic (or literal) expressions can allow us to test the ability of generative language models (LMs) in understanding nuanced language containing non-compositional figurative text. We conduct a series of experiments using datasets in two distinct languages (English and Portuguese) under three different training settings (zero-shot, few-shot, and fine-tuned). Our results suggest that the models are only slightly better at generating continuations for literal contexts than idiomatic contexts, with exceedingly small margins. Furthermore, the models studied in this work perform equally well across both languages, indicating the robustness of generative models in performing this task.",
+      "year": 2023,
+      "source": "latex_s3"
+    },
+    {
+      "id": "2206.12262",
+      "label": "Emoji-based Fine-grained Attention Network for S…",
+      "title": "Emoji-based Fine-grained Attention Network for Sentiment Analysis in the\n  Microblog Comments",
+      "outline": "- Introduction\n- Sentiment Anaylysis\n- Sentiment Analysis with Emoji\n- THE PROPOSED MODEL\n- Text",
+      "gold_abstract": "Microblogs have become a social platform for people to express their emotions\nin real-time, and it is a trend to analyze user emotional tendencies from the\ninformation on Microblogs. The dynamic features of emojis can affect the\nsentiment polarity of microblog texts. Since existing models seldom consider\nthe diversity of emoji sentiment polarity,the paper propose a microblog\nsentiment classification model based on ALBERT-FAET. We obtain text embedding\nvia ALBERT pretraining model and learn the inter-emoji embedding with an\nattention-based LSTM network. In addition, a fine-grained attention mechanism\nis proposed to capture the word-level interactions between plain text and\nemoji. Finally, we concatenate these features and feed them into a CNN\nclassifier to predict the sentiment labels of the microblogs. To verify the\neffectiveness of the model and the fine-grained attention network, we conduct\ncomparison experiments and ablation experiments. The comparison experiments\nshow that the model outperforms previous methods in three evaluation indicators\n(accuracy, precision, and recall) and the model can significantly improve\nsentiment classification. The ablation experiments show that compared with\nALBERT-AET, the proposed model ALBERT-FAET is better in the metrics, indicating\nthat the fine-grained attention network can understand the diversified\ninformation of emoticons.",
+      "year": 2022,
+      "source": "unarxive"
+    },
+    {
+      "id": "2103.16102",
+      "label": "XRJL-HKUST at SemEval-2021 Task 4: WordNet-Enhan…",
+      "title": "XRJL-HKUST at SemEval-2021 Task 4: WordNet-Enhanced Dual Multi-head\n  Co-Attention for Reading Comprehension of Abstract Meaning",
+      "outline": "- Introduction\n- System Description\n- WordNet-enhanced Encoder\n- Dual Multi-head Co-Attention Layer\n- Classifier",
+      "gold_abstract": "This paper presents our submitted system to SemEval 2021 Task 4: Reading\nComprehension of Abstract Meaning. Our system uses a large pre-trained language\nmodel as the encoder and an additional dual multi-head co-attention layer to\nstrengthen the relationship between passages and question-answer pairs,\nfollowing the current state-of-the-art model DUMA. The main difference is that\nwe stack the passage-question and question-passage attention modules instead of\ncalculating parallelly to simulate re-considering process. We also add a layer\nnormalization module to improve the performance of our model. Furthermore, to\nincorporate our known knowledge about abstract concepts, we retrieve the\ndefinitions of candidate answers from WordNet and feed them to the model as\nextra inputs. Our system, called WordNet-enhanced DUal Multi-head Co-Attention\n(WN-DUMA), achieves 86.67% and 89.99% accuracy on the official blind test set\nof subtask 1 and subtask 2 respectively.",
+      "year": 2021,
+      "source": "unarxive"
+    },
+    {
+      "id": "2107.14600",
+      "label": "MDQE: A More Accurate Direct Pretraining for Mac…",
+      "title": "MDQE: A More Accurate Direct Pretraining for Machine Translation Quality\n  Estimation",
+      "outline": "- Introduction\n- Approch\n- Generator\n- Estimator\n- Experimental Settings",
+      "gold_abstract": "It is expensive to evaluate the results of Machine Translation(MT), which\nusually requires manual translation as a reference. Machine Translation Quality\nEstimation (QE) is a task of predicting the quality of machine translations\nwithout relying on any reference. Recently, the emergence of\npredictor-estimator framework which trains the predictor as a feature extractor\nand estimator as a QE predictor, and pre-trained language models(PLM) have\nachieved promising QE performance. However, we argue that there are still gaps\nbetween the predictor and the estimator in both data quality and training\nobjectives, which preclude QE models from benefiting from a large number of\nparallel corpora more directly. Based on previous related work that have\nalleviated gaps to some extent, we propose a novel framework that provides a\nmore accurate direct pretraining for QE tasks. In this framework, a generator\nis trained to produce pseudo data that is closer to the real QE data, and a\nestimator is pretrained on these data with novel objectives that are the same\nas the QE task. Experiments on widely used benchmarks show that our proposed\nframework outperforms existing methods, without using any pretraining models\nsuch as BERT.",
+      "year": 2021,
+      "source": "unarxive"
+    }
+  ]
+}

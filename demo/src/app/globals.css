@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+  max-height: 100dvh;
+  overflow: hidden;
+}
+
+body {
+  @apply bg-slide-bg text-slide-body;
+}
+
+@layer components {
+  .slide-panel {
+    @apply rounded-xl border border-slide-border bg-slide-surface;
+  }
+
+  .slide-panel-elevated {
+    @apply rounded-xl border border-slide-border bg-slide-elevated;
+  }
+
+  .scroll-panel {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    contain: layout paint style;
+    touch-action: pan-y;
+  }
+
+  .passage-card {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 6rem;
+  }
+
+  .passage-card-expanded {
+    content-visibility: visible;
+  }
+
+  .section-kicker {
+    @apply font-mono text-sm font-medium uppercase tracking-[0.18em] text-accent;
+  }
+
+  .input-field {
+    @apply min-h-[44px] w-full rounded-lg border border-slide-border bg-slide-bg px-4 py-3 text-base text-slide-ink placeholder:text-slide-muted focus:border-accent/60 focus:ring-2 focus:ring-accent/15 disabled:opacity-50;
+  }
+
+  .system-picker-open {
+    @apply overflow-hidden rounded-xl border border-accent/60 bg-slide-elevated shadow-[0_12px_40px_rgba(0,0,0,0.45)];
+  }
+
+  .btn-primary {
+    @apply min-h-[48px] rounded-lg bg-accent px-6 py-3 text-base font-semibold text-slide-bg hover:bg-[#6dddf3] disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  .btn-secondary {
+    @apply min-h-[40px] rounded-lg border border-slide-border bg-slide-elevated px-4 py-2.5 text-sm font-medium uppercase tracking-wide text-accent hover:border-accent/50 hover:bg-accent/10;
+  }
+
+  .status-chip {
+    @apply inline-flex min-h-[40px] items-center gap-2.5 rounded-lg border border-slide-border bg-slide-surface px-4 py-2 text-sm text-slide-body;
+  }
+
+  .pipeline-step {
+    @apply flex min-h-[40px] items-center gap-2 rounded-lg border border-slide-border bg-slide-surface px-4 py-2 text-sm text-slide-muted;
+  }
+
+  .pipeline-step-active {
+    @apply border-accent/40 bg-accent/10 text-accent;
+  }
+
+  .range-slider {
+    @apply h-2 cursor-pointer appearance-none rounded-full bg-slide-elevated;
+  }
+
+  .range-slider::-webkit-slider-thumb {
+    @apply h-5 w-5 appearance-none rounded-full border-2 border-accent bg-slide-ink shadow-[0_0_8px_rgba(79,209,237,0.4)];
+  }
+
+  .range-slider::-moz-range-thumb {
+    @apply h-5 w-5 rounded-full border-2 border-accent bg-slide-ink;
+  }
+
+  .range-slider:disabled {
+    @apply cursor-not-allowed opacity-40;
+  }
+}
+
+textarea,
+input,
+select,
+button {
+  @apply outline-none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2d3a4d;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4fd1ed55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

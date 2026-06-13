@@ -1,0 +1,120 @@
+# Segment 1 — data acquisition (see build_plan_v3.md, Revision v3.1)
+#
+# Corpus is FROZEN under data/archive/ as of v3.1. Both `unarxive` and
+# `arxiv_s3` sources are disabled; this config is now a historical / read-only
+# pointer. Downstream code (M-2.0 normalizer onward) consumes data/archive/*
+# directly and writes to data/parsed/.
+
+category: cs.CL
+category_match: primary
+
+paper_count_target: 50000   # historical target; actual corpus = ~8,968 papers (see STATUS)
+
+paths:
+  data_dir: data
+  parsed_dir: data/parsed
+  parsed_manifest: data/parsed_manifest.jsonl
+  parsed_valid: data/parsed_valid.json
+  splits_dir: data/splits
+  s2_cache: data/s2_cache.jsonl
+  papers_enriched: data/papers_enriched.jsonl
+  kaggle_metadata: data/archive/metadata/arxiv-metadata-oai-snapshot.json
+  cs_cl_ids: data/archive/metadata/cs_cl_ids.json
+  manifest_xml: data/archive/metadata/arXiv_src_manifest.xml
+  manifest_filtered: data/archive/metadata/manifest_filtered.json
+  raw_tarballs: data/archive/raw_tarballs   # unused after v3.1 (S3 closed)
+  tex_extracted: data/archive/tex_extracted
+  downloaded_ledger: data/archive/metadata/ledgers/downloaded.txt
+  extracted_ledger: data/archive/metadata/ledgers/extracted.txt
+  unarxive_manifest: data/archive/metadata/unarxive_manifest.json
+  unarxive_extracted: data/archive/unarxive_extracted
+  unarxive_materialized_ledger: data/archive/metadata/ledgers/unarxive_materialized.txt
+
+kaggle:
+  dataset: Cornell-University/arxiv
+
+sources:
+  unarxive:
+    enabled: false             # v3.1: corpus frozen, no re-materialization
+    year_min: 2016
+    year_max: 2022
+    paper_fraction: 0.9
+    random_seed: 1337
+    root_dir: data/archive/_unarxive_shards_removed   # raw shards dropped post-materialize
+    shard_glob: "**/*.jsonl"
+    download:
+      url: https://zenodo.org/api/records/7752615/files/unarXive_230324_open_subset.tar.xz/content
+      archive_name: unarXive_230324_open_subset.tar.xz
+      min_shards: 1
+      keep_archive: false
+      resume_forever: true
+      retry_delay_s: 5.0
+      max_retry_delay_s: 300.0
+    delete_shards_after_materialize: true
+    id_fields:
+      - paper_id
+      - id
+      - arxiv_id
+      - metadata.id
+    title_fields:
+      - title
+      - metadata.title
+    abstract_fields:
+      - abstract
+      - metadata.abstract
+    text_fields:
+      - text
+      - paper_text
+      - body_text
+      - content.text
+      - body.text
+
+  arxiv_s3:
+    enabled: false             # v3.1: S3 budget closed at $0 going forward
+    year_min: 2023
+    year_max: 2026
+    paper_fraction: 0.1
+    random_seed: 1337
+    cost:
+      egress_per_gb_usd: 0.09
+      get_request_usd: 0.0004
+      hard_cap_usd: 0.0        # v3.1: no further S3 spend
+    bucket: arxiv
+    manifest_key: src/arXiv_src_manifest.xml
+    region: us-east-1
+    request_payer: requester
+    max_workers: 4
+    max_retries: 3
+    transfer:
+      multipart_threshold_mb: 8
+      multipart_chunksize_mb: 16
+      max_concurrency: 10
+      max_pool_connections: 32
+    pipeline:
+      extract_after_download: true
+      delete_tarball_after_extract: true
+
+seg2:
+  min_body_len: 4000
+  min_citation_keys: 0
+  holdout_fraction: 0.10
+  eval_grid_size: 80
+  sft_citation_min: 3
+  random_seed: 1337
+
+cleaning:
+  skip_extensions:
+    - .pdf
+    - .png
+    - .jpg
+    - .jpeg
+    - .gif
+    - .bmp
+    - .tif
+    - .tiff
+    - .webp
+    - .eps
+    - .ps
+    - .svg
+    - .ppm
+    - .pbm
