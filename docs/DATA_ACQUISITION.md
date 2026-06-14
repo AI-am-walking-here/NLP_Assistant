@@ -4,17 +4,16 @@ Two ways to obtain the ~8,900-paper cs.CL corpus.
 
 ## Option A — Re-export from frozen snapshot (recommended)
 
-If you have `papers.jsonl.gz` (~264 MB):
+If you have `data/corpus/papers.jsonl.gz` (included in this repo via Git LFS):
 
 ```bash
 export PYTHONPATH=src
-python scripts/export_from_corpus.py \
-  --corpus /path/to/papers.jsonl.gz \
-  --parsed-dir data/parsed
+git lfs pull   # fetch corpus if cloned without LFS files
+python scripts/export_from_corpus.py --corpus data/corpus/papers.jsonl.gz
 python scripts/seg2_bookkeeping.py --skip-s2
 ```
 
-Default corpus path in code: `/data/team1/corpus/papers.jsonl.gz` (override with `--corpus`).
+Default corpus path: `data/corpus/papers.jsonl.gz` (included via Git LFS; see `data/DATASET_CARD.md`).
 
 ## Option B — Download from scratch (Segment 1)
 

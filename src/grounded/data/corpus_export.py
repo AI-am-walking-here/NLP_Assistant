@@ -22,7 +22,7 @@ LATEX_SECTION_RE = re.compile(
     r"\\(section|subsection|subsubsection)\*?\s*\{([^{}]+)\}"
 )
 
-DEFAULT_CORPUS = Path("/data/team1/corpus/papers.jsonl.gz")
+DEFAULT_CORPUS = Path("data/corpus/papers.jsonl.gz")
 
 
 def paper_year(arxiv_id: str) -> int | None:

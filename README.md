@@ -29,7 +29,9 @@ Grounded is a retrieval-augmented scientific writing assistant that generates NL
 └── docs/                  # eval workflow, model transfer, data acquisition
 ```
 
-**Not included in this repo (too large):** parsed papers (`data/parsed/`), FAISS index (`data/chunks/`, `data/indices/`), SFT training JSONL (`data/sft/`), model weights, and training checkpoints. See [Data artifacts](#data-artifacts) below.
+**Included data:** corpus snapshot (`data/corpus/papers.jsonl.gz`, Git LFS), splits, SFT/RankRAG training JSONL, eval prompts — see [`data/DATASET_CARD.md`](data/DATASET_CARD.md) for collection, license, and known biases.
+
+**Not included (regenerate locally):** parsed per-paper JSON (`data/parsed/`), FAISS index (`data/chunks/`, `data/indices/`), model weights, training checkpoints.
 
 ---
 
@@ -105,7 +107,7 @@ Rebuild or obtain locally before running the full pipeline:
 | SFT adapter | `scripts/sft_train.py` → `runs/seg5_sft_train_*/adapter` | ~200 MB |
 | RankRAG adapter | `scripts/rankrag_train.py` → `runs/seg6_rankrag_*/adapter` | ~200 MB |
 
-This repo **does** include: split ID lists (`data/splits/`), valid paper IDs (`data/parsed_valid.json`), eval prompts (`data/eval_set/prompts.jsonl`), and the reported aggregate scores (`results/main_table.json`). See `docs/DATA_ACQUISITION.md` for corpus download/export.
+This repo **includes** (see `data/DATASET_CARD.md`): corpus snapshot, split lists, SFT/RankRAG JSONL, eval prompts, and reported scores. **Regenerate locally:** parsed JSON, FAISS index, adapters (scripts below).
 
 ### 5. Smoke test (no GPU models)
 

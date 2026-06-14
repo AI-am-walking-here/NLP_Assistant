@@ -36,6 +36,12 @@ data/s2_cache.jsonl
 data/parsed_manifest.jsonl
 data/archive/
 
+# Corpus snapshot (Git LFS — see data/DATASET_CARD.md)
+data/corpus/*
+!data/corpus/
+!data/corpus/papers.jsonl.gz
+!data/corpus/README.md
+
 # Portable splits (ID lists only)
 data/splits/*
 !data/splits/
@@ -51,7 +57,9 @@ data/backups/
 
 data/rankrag/*
 !data/rankrag/
+!data/rankrag/README.md
 !data/rankrag/*.jsonl
+!data/rankrag/merge_manifest.json
 
 data/eval_set/*
 !data/eval_set/
