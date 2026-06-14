@@ -33,8 +33,12 @@ venv/
 
 # --- project artifacts (large, regenerable) ---
 data/parsed/
-data/chunks/
-data/indices/
+data/chunks/*
+!data/chunks/
+!data/chunks/README.md
+data/indices/*
+!data/indices/
+!data/indices/README.md
 data/graph/
 data/s2_cache.jsonl
 data/parsed_manifest.jsonl

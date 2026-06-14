@@ -37,6 +37,54 @@ Grounded is a retrieval-augmented scientific writing assistant that generates NL
 
 ---
 
+## Data archive — extract this first
+
+The bulky artifacts (the ~8.8K-paper corpus, the FAISS index, and the SFT/RankRAG
+LoRA adapters) are **delivered separately** as `grounded-artifacts.tar.gz` (~2.3 GB);
+they are *not* inside this repository. Download that file, then **extract it from the
+repository root** (the folder that holds this `README.md`). The archive already carries
+the correct `data/` and `runs/` sub-paths, so each piece lands where the code expects it
+— do **not** extract into `data/` alone:
+
+```bash
+# run from the repo root
+tar -xzf /path/to/grounded-artifacts.tar.gz -C .
+```
+
+On Windows (PowerShell — `tar` ships with Windows 10/11):
+
+```powershell
+tar -xzf C:\path\to\grounded-artifacts.tar.gz -C .
+```
+
+Or use the helper, which extracts and then prints a sanity check:
+
+```bash
+bash scripts/install_artifacts.sh /path/to/grounded-artifacts.tar.gz
+```
+
+The archive unpacks to:
+
+```
+data/corpus/papers.jsonl.gz                              # corpus snapshot
+data/chunks/chunks.parquet                               # section-aware chunks
+data/indices/faiss.index, data/indices/embeddings.npy    # dense retrieval index
+runs/seg5_sft_train_2026-06-05-0617/adapter/             # SFT LoRA (pins the main table)
+runs/seg6_rankrag_train_2026-06-05-0542/adapter/         # RankRAG LoRA
+```
+
+Verify it landed correctly:
+
+```bash
+ls data/corpus/papers.jsonl.gz data/indices/faiss.index \
+   runs/seg5_sft_train_2026-06-05-0617/adapter
+```
+
+Size breakdown and licensing: [`data/ARTIFACTS_DOWNLOAD.md`](data/ARTIFACTS_DOWNLOAD.md).
+(`data/chunks/` and `data/indices/` ship empty in Git, each with a README pointing here.)
+
+---
+
 ## Setup
 
 ### 1. Environment

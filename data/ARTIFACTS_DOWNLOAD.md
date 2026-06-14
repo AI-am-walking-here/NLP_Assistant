@@ -19,25 +19,21 @@ Large pinned files are **not in Git** (avoids Git LFS quota issues and pointer-f
 
 ## Download
 
-**Replace this URL before submission** with your course website, Google Drive, or Zenodo link:
-
-```
-TODO: https://YOUR_HOST/grounded-artifacts.tar.gz
-```
-
-Local copy on the university server (until decommission):
+University server (course project host):
 
 ```
 /data/team1/grounded-artifacts.tar.gz   # 2.3 GB compressed
-/data/team1/grounded-artifacts/        # uncompressed tree (same contents)
+/data/team1/grounded-artifacts/         # uncompressed tree (same contents)
 ```
+
+Copy the tarball to your machine, then install from the local path below. To fetch via URL instead, set `GROUNDED_ARTIFACTS_URL` to any HTTPS link you host the same archive on.
 
 ## Install into repo root
 
 ```bash
 bash scripts/install_artifacts.sh /path/to/grounded-artifacts.tar.gz
-# or
-export GROUNDED_ARTIFACTS_URL='https://YOUR_HOST/grounded-artifacts.tar.gz'
+# or, if you host the tarball at an HTTPS URL:
+export GROUNDED_ARTIFACTS_URL='https://example.com/grounded-artifacts.tar.gz'
 bash scripts/install_artifacts.sh
 ```
 
