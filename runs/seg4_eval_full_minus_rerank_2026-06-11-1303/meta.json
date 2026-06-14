@@ -1,0 +1,21 @@
+{
+  "segment": "seg4",
+  "purpose": "eval_full_minus_rerank",
+  "timestamp": "2026-06-11-1303",
+  "tags": [
+    "m-4.7",
+    "full_minus_rerank"
+  ],
+  "git_hash": "350839e0419661ca7f381db820fc71ea9ea7a618",
+  "config": {
+    "system": "full_minus_rerank",
+    "mock_gen": false,
+    "generator_4bit": true,
+    "sft_adapter_dir": "/data/team1/llm-assistant-final/runs/seg5_sft_train_2026-06-05-0617/adapter",
+    "sft_run_dir": "/data/team1/llm-assistant-final/runs/seg5_sft_train_2026-06-05-0617",
+    "sft_adapter_source": "latest_complete",
+    "generation_temperature": "0.4"
+  },
+  "status": "finished",
+  "finished_at": "2026-06-11T13:22:44.138436+00:00"
+}

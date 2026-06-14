@@ -7,20 +7,23 @@
 
 ## Summary
 
-This repository ships the **portable data artifacts** needed to reproduce our cs.CL abstract-generation benchmark: corpus snapshot, train/val splits, SFT and RankRAG training sets, and an 80-prompt evaluation grid. Full FAISS indices and per-paper parsed JSON (~13 GB) are **not** included; regenerate with `scripts/build_index.py` after running `scripts/export_from_corpus.py`.
+| Path | Records | Size | In Git? |
+|------|---------|------|---------|
+| `data/corpus/papers.jsonl.gz` | 8,961 papers | 264 MB | **External archive** |
+| `runs/seg5_sft_train_2026-06-05-0617/adapter/` | SFT LoRA | 43 MB | **External archive** |
+| `runs/seg6_rankrag_train_2026-06-05-0542/adapter/` | RankRAG LoRA | 69 MB | **External archive** |
+| `data/indices/` + `data/chunks/` | FAISS index | ~2.1 GB | **External archive** |
+| `data/parsed_valid.json` | 8,779 IDs | 140 KB | Git |
+| `data/splits/*.txt` | ID lists | 200 KB | Git |
+| `data/sft/*.jsonl` | SFT training | ~71 MB | Git |
+| `data/rankrag/train.jsonl` | RankRAG training | 30 MB | Git |
+| `data/eval_set/prompts.jsonl` | 80 prompts | 108 KB | Git |
+| `runs/seg4_eval_*_2026-06-11-*/` | per-prompt eval | ~600 KB | Git |
+| `results/main_table.json` | 3 systems | 4 KB | Git |
 
-| Path | Records | Size (approx.) | Role |
-|------|---------|----------------|------|
-| `data/corpus/papers.jsonl.gz` | 8,961 papers | 264 MB | Frozen normalized corpus snapshot |
-| `data/parsed_valid.json` | 8,779 IDs | 140 KB | Quality-filtered paper ID list |
-| `data/splits/*.txt` | 7,901–2,174 IDs | 200 KB | Index / holdout / SFT / eval splits |
-| `data/sft/train.jsonl` | 2,174 examples | 67 MB | SFT training (title + outline → abstract) |
-| `data/sft/val.jsonl` | 114 examples | 3.6 MB | SFT validation |
-| `data/sft/dpo_pairs.jsonl` | pairs | 588 KB | Optional DPO pairs |
-| `data/rankrag/train.jsonl` | rerank pairs | 30 MB | RankRAG reranker training |
-| `data/eval_set/prompts.jsonl` | 80 prompts | 108 KB | Canonical eval input |
-| `data/eval_set/grid_runs.json` | 3 systems | 4 KB | Reported aggregate scores |
-| `results/main_table.json` | 3 systems | 4 KB | Submission results table |
+**External archive** (~2.3 GB compressed): see [`ARTIFACTS_DOWNLOAD.md`](ARTIFACTS_DOWNLOAD.md). We do **not** use Git LFS.
+
+Full FAISS indices and per-paper parsed JSON (~13 GB parsed) are not included; regenerate with `scripts/build_index.py` after `export_from_corpus.py` if you skip the index bundle.
 
 ---
 
@@ -38,9 +41,28 @@ We **do not** redistribute the original unarXive shards or arXiv S3 LaTeX tarbal
 
 Re-download from scratch: enable sources in `configs/data.yaml` and run `scripts/s3_pull.py` (see `docs/DATA_ACQUISITION.md`).
 
+### Pinned adapters (external archive — exact table reproduction)
+
+Retraining is **nondeterministic**. To reproduce `results/main_table.json` exactly:
+
+| Adapter | Path |
+|---------|------|
+| SFT | `runs/seg5_sft_train_2026-06-05-0617/adapter/` |
+| RankRAG | `runs/seg6_rankrag_train_2026-06-05-0542/adapter/` |
+
+### Pinned eval runs (in Git)
+
+| Run directory | System | FActScore |
+|---------------|--------|-----------|
+| `runs/seg4_eval_full_2026-06-11-1237` | `full` | 0.240 |
+| `runs/seg4_eval_full_minus_rerank_2026-06-11-1303` | `full_minus_rerank` | 0.222 |
+| `runs/seg4_eval_full_minus_sft_2026-06-11-1323` | `full_minus_sft` | 0.496 |
+
+Each contains `results.json`, `per_prompt.jsonl`, `meta.json` — inspect generated abstracts and FActScore verdicts without GPU.
+
 ### What we include
 
-1. **`papers.jsonl.gz`** — Our **processed snapshot** after LaTeX normalization (one JSON object per line: arXiv ID, title, abstract, body text, sections, citation keys). Produced from the sources above with filters in `configs/data.yaml` (`seg2`: min body length 4,000 chars, `min_citation_keys: 0`).
+1. **`papers.jsonl.gz`** (external archive) — processed snapshot after LaTeX normalization.
 
 2. **Split lists** — Deterministic stratified splits (`random_seed: 1337`): index (7,901), eval holdout (878), eval grid (80), SFT (2,174), graph pilot (500).
 
@@ -86,14 +108,9 @@ Re-download from scratch: enable sources in `configs/data.yaml` and run `scripts
 ## Regeneration
 
 ```bash
-# From included corpus snapshot
+bash scripts/install_artifacts.sh /path/to/grounded-artifacts.tar.gz
 export PYTHONPATH=src
 python scripts/export_from_corpus.py --corpus data/corpus/papers.jsonl.gz
-python scripts/seg2_bookkeeping.py --skip-s2
-python scripts/build_index.py
-python scripts/build_sft_data.py
-python scripts/build_rankrag_data.py
-python scripts/build_eval_prompts.py
 ```
 
 Or re-acquire corpus: `docs/DATA_ACQUISITION.md`.

@@ -1,0 +1,17 @@
+{
+  "segment": "seg4",
+  "purpose": "eval_full_minus_sft",
+  "timestamp": "2026-06-11-1323",
+  "tags": [
+    "m-4.7",
+    "full_minus_sft"
+  ],
+  "git_hash": "350839e0419661ca7f381db820fc71ea9ea7a618",
+  "config": {
+    "system": "full_minus_sft",
+    "mock_gen": false,
+    "generator_4bit": true
+  },
+  "status": "finished",
+  "finished_at": "2026-06-11T13:43:57.759452+00:00"
+}

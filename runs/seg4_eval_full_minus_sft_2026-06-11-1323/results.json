@@ -1,0 +1,14 @@
+{
+  "system": "full_minus_sft",
+  "n_prompts": 80,
+  "factscore_mean": 0.4958333333333331,
+  "mock_generation": false,
+  "mock_verifier": false,
+  "mock_reranker": false,
+  "reference_overlap_mean": 0.27484125,
+  "specificity_ratio_mean": 0.63708125,
+  "index_mock_embed": false,
+  "verifier_url": "http://127.0.0.1:8765",
+  "generator_4bit": true,
+  "input_fingerprint": "e79196473b620ba07611599ed278a598bc1aa5230eb897ea79bbd407664f6b0e"
+}
