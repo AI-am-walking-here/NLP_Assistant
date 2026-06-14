@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 # Extract libpython3.10-dev headers into .tmp/py310dev (no sudo).
 # Required for vLLM / Triton worker JIT (Python.h).
+#
+# IMPORTANT: the Python version here (3.10) must match the venv that runs the
+# verifier. The reference results were produced on a Python 3.10 server. If your
+# venv uses a different version (e.g. the conda env in environment.yml is 3.11),
+# replace every "3.10" below — and the matching path in
+# src/grounded/eval/verifier_server.py (_python_header_paths) — with your
+# version, or install the system headers via: sudo apt install python3.X-dev.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 DEST="${ROOT}/.tmp/py310dev"

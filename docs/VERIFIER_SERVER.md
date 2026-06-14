@@ -21,6 +21,11 @@ bash scripts/setup_python_dev_headers.sh   # extracts libpython3.10-dev → .tmp
 # Or: sudo apt install python3.10-dev libpython3.10-dev
 ```
 
+> The header version must match the venv's Python. The reference results were
+> produced on Python 3.10. If your venv uses a different version (the conda env
+> in `environment.yml` is 3.11), substitute `3.10` accordingly in the command
+> above and in `setup_python_dev_headers.sh` / `verifier_server.py`.
+
 `serve_verifier.py` runs the setup script automatically when headers are missing.
 
 4. Install extras (project venv):

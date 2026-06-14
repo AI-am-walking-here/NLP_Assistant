@@ -1,4 +1,4 @@
-# Grounded PoC — Results (draft)
+# Grounded — Results
 
 Headline metric: **FActScore** (70B verifier via HTTP; see docs/EVAL_WORKFLOW.md).
 
@@ -14,5 +14,5 @@ Headline metric: **FActScore** (70B verifier via HTTP; see docs/EVAL_WORKFLOW.md
 
 - Grid source: `main_table.json` under `data/eval_set/`
 - Index mock embed: `see data/indices/index_meta.json`
-- Citation P/R removed per v3.1.
-- No large Hub model downloads; see STATUS.md model policy.
+- Citation precision/recall metrics are not reported.
+- Models are loaded from local disk; no large Hugging Face downloads at eval time (see README → Models).

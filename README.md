@@ -127,6 +127,16 @@ The headline results are in `results/main_table.json` and `results/main_table.md
 | `full_minus_rerank` | 0.222 | 0.374 | 0.540 |
 | `full_minus_sft` | 0.496 | 0.275 | 0.637 |
 
+> **Reading the table.** Rows are ablations of the `full` system. `full_minus_sft`
+> (no domain SFT adapter) scores **higher** on FActScore than `full`: in this setup,
+> domain SFT traded factual grounding for higher reference overlap. This is a
+> deliberate, reported finding, not an error.
+>
+> **Reproducing these exact numbers requires the trained SFT and RankRAG adapters**
+> (see the artifacts table above). They are not committed (too large); retrain them
+> with `scripts/sft_train.py` and `scripts/rankrag_train.py`, or run the mock-mode
+> sanity check below to exercise the harness without GPUs.
+
 ### Full reproduction (real stack)
 
 **Prerequisites:** parsed corpus, FAISS index, SFT + RankRAG adapters, 2× GPUs for the 70B verifier.
@@ -138,9 +148,10 @@ export GROUNDED_MODELS_ROOT=/path/to/models
 # Terminal 1 — FActScore verifier (70B, vLLM, 2 GPUs)
 CUDA_VISIBLE_DEVICES=0,1 python scripts/serve_verifier.py --host 127.0.0.1 --port 8765
 
-# Terminal 2 — eval grid (80 prompts × 9 systems)
+# Terminal 2 — eval grid (80 prompts × 3 headline systems)
+# Note: --systems takes one system per flag (repeat it), not a space-separated list.
 CUDA_VISIBLE_DEVICES=0 python scripts/run_eval_grid.py \
-  --systems full full_minus_rerank full_minus_sft
+  --systems full --systems full_minus_rerank --systems full_minus_sft
 
 # Aggregate → results/
 cp data/eval_set/grid_runs.json results/main_table.json
@@ -154,7 +165,7 @@ See `docs/EVAL_WORKFLOW.md` for step-by-step details (verifier smoke, ablations,
 ```bash
 export PYTHONPATH=src
 python scripts/run_eval_grid.py \
-  --systems full full_minus_rerank full_minus_sft \
+  --systems full --systems full_minus_rerank --systems full_minus_sft \
   --limit 5 --mock-gen --mock-verifier --skip-verifier-check
 ```
 
