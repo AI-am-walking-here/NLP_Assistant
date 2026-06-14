@@ -13,6 +13,9 @@ Reported results for submission: `results/main_table.json` and `results/main_tab
 
 ## Dataset card — `prompts.jsonl`
 
+> The canonical, project-wide dataset card is [`../DATASET_CARD.md`](../DATASET_CARD.md).
+> This section adds detail specific to the 80 evaluation prompts.
+
 **Summary.** 80 abstract-generation tasks. Each line is one held-out paper: the
 model receives the `title` and a section `outline` and must generate an abstract;
 `gold_abstract` is the paper's own abstract, used as the reference.

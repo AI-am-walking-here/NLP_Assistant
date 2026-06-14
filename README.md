@@ -106,10 +106,10 @@ Rebuild or obtain locally before running the full pipeline:
 | `data/chunks/chunks.parquet` | `scripts/build_index.py` | ~100 MB |
 | `data/indices/faiss.index` | `scripts/build_index.py` | ~1 GB |
 | `data/sft/train.jsonl` | `scripts/build_sft_data.py` | ~70 MB |
-| SFT adapter | `scripts/sft_train.py` → `runs/seg5_sft_train_*/adapter` | ~200 MB |
-| RankRAG adapter | `scripts/rankrag_train.py` → `runs/seg6_rankrag_*/adapter` | ~200 MB |
+| SFT adapter | `scripts/sft_train.py` → `runs/seg5_sft_train_*/adapter` (in archive) | 43 MB |
+| RankRAG adapter | `scripts/rankrag_train.py` → `runs/seg6_rankrag_*/adapter` (in archive) | 69 MB |
 
-This repo **includes** (see `data/DATASET_CARD.md`): corpus snapshot, split lists, SFT/RankRAG JSONL, eval prompts, and reported scores. **Regenerate locally:** parsed JSON, FAISS index, adapters (scripts below).
+**In Git** (see `data/DATASET_CARD.md`): split lists, SFT/RankRAG training JSONL, eval prompts, pinned eval runs, and reported scores. **External archive** (`data/ARTIFACTS_DOWNLOAD.md`): corpus snapshot, FAISS index, and the pinned SFT/RankRAG adapters. **Regenerate locally:** parsed JSON (and, if you skip the archive, the index/adapters via the scripts below).
 
 ### 5. Smoke test (no GPU models)
 
@@ -136,10 +136,12 @@ The headline results are in `results/main_table.json` and `results/main_table.md
 > domain SFT traded factual grounding for higher reference overlap. This is a
 > deliberate, reported finding, not an error.
 >
-> **Reproducing these exact numbers requires the trained SFT and RankRAG adapters**
-> (see the artifacts table above). They are not committed (too large); retrain them
-> with `scripts/sft_train.py` and `scripts/rankrag_train.py`, or run the mock-mode
-> sanity check below to exercise the harness without GPUs.
+> **Reproducing these exact numbers requires the pinned SFT and RankRAG adapters.**
+> They ship in the external archive — install with `bash scripts/install_artifacts.sh`
+> (see [`data/ARTIFACTS_DOWNLOAD.md`](data/ARTIFACTS_DOWNLOAD.md)) — or retrain with
+> `scripts/sft_train.py` / `scripts/rankrag_train.py` (retraining is nondeterministic,
+> so numbers will be close but not identical). Or run the mock-mode sanity check below
+> to exercise the harness without GPUs.
 
 ### Full reproduction (real stack)
 
