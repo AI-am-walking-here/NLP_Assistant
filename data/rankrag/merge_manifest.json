@@ -1,0 +1,11 @@
+{
+  "inputs_fingerprint": "714ea56ed6eccfd6092ac82dbb5b7c4c3735d5f7df9d842436c7a404575ac5e9",
+  "schedule_fingerprint": "03fd201c00e084edebd0b284b85cec039fd1ed5a43af75698e6d2326a7f7642e",
+  "reserve_count": 798,
+  "requested_count": 798,
+  "written_count": 793,
+  "processed_count": 798,
+  "shard_count": 16,
+  "worker_count": 4,
+  "path": "/data/team1/llm-assistant-final/data/rankrag/train.jsonl"
+}

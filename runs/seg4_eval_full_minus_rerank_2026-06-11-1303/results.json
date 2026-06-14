@@ -1,0 +1,18 @@
+{
+  "system": "full_minus_rerank",
+  "n_prompts": 80,
+  "factscore_mean": 0.22245535714285708,
+  "mock_generation": false,
+  "mock_verifier": false,
+  "mock_reranker": true,
+  "reference_overlap_mean": 0.3735475,
+  "specificity_ratio_mean": 0.5398637499999998,
+  "index_mock_embed": false,
+  "verifier_url": "http://127.0.0.1:8765",
+  "sft_adapter_dir": "/data/team1/llm-assistant-final/runs/seg5_sft_train_2026-06-05-0617/adapter",
+  "sft_run_dir": "/data/team1/llm-assistant-final/runs/seg5_sft_train_2026-06-05-0617",
+  "sft_adapter_source": "latest_complete",
+  "generation_temperature": "0.4",
+  "generator_4bit": true,
+  "input_fingerprint": "d95fa16e31187a871580e58c5a7938f8ce96681dec645821c8fd724d21bf54a8"
+}

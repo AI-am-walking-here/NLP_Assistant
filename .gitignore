@@ -36,6 +36,11 @@ data/s2_cache.jsonl
 data/parsed_manifest.jsonl
 data/archive/
 
+# Corpus snapshot — external archive (NOT Git LFS; see data/ARTIFACTS_DOWNLOAD.md)
+data/corpus/*
+!data/corpus/
+!data/corpus/README.md
+
 # Portable splits (ID lists only)
 data/splits/*
 !data/splits/
@@ -51,7 +56,9 @@ data/backups/
 
 data/rankrag/*
 !data/rankrag/
+!data/rankrag/README.md
 !data/rankrag/*.jsonl
+!data/rankrag/merge_manifest.json
 
 data/eval_set/*
 !data/eval_set/
@@ -71,8 +78,18 @@ archive/*
 !archive/baseline_*/
 !archive/baseline_*/**
 
-# --- runs (per-experiment; large, regenerable) ---
-runs/
+# --- runs (regenerable; pinned eval outputs tracked) ---
+runs/*
+!runs/seg4_eval_full_2026-06-11-1237/
+!runs/seg4_eval_full_2026-06-11-1237/**
+!runs/seg4_eval_full_minus_rerank_2026-06-11-1303/
+!runs/seg4_eval_full_minus_rerank_2026-06-11-1303/**
+!runs/seg4_eval_full_minus_sft_2026-06-11-1323/
+!runs/seg4_eval_full_minus_sft_2026-06-11-1323/**
+
+# Large adapters + index: external archive (see data/ARTIFACTS_DOWNLOAD.md)
+runs/seg5_sft_train_*/
+runs/seg6_rankrag_train_*/
 
 # --- references (vendored externally; pinned commit) ---
 references/*/
