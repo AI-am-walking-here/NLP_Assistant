@@ -34,6 +34,10 @@
       "sft_adapter_dir": "runs/seg5_sft_train_2026-06-05-0617/adapter",
       "sft_run_dir": "runs/seg5_sft_train_2026-06-05-0617",
       "eval_run_dir": "runs/seg4_eval_full_minus_rerank_2026-06-11-1303",
+      "sft_adapter_source": "latest_complete",
+      "generation_temperature": "0.4",
+      "generator_4bit": true,
+      "input_fingerprint": "d95fa16e31187a871580e58c5a7938f8ce96681dec645821c8fd724d21bf54a8"
     },
     {
       "system": "full_minus_sft",
