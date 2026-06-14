@@ -26,15 +26,18 @@ model receives the `title` and a section `outline` and must generate an abstract
 | `outline` | Section outline (model input) |
 | `gold_abstract` | Reference abstract (held out; never shown to the model) |
 | `year` | Publication year |
-| `source` | Provenance tag (e.g. `unarxive`) |
+| `source` | Provenance pipeline: `unarxive` (67/80) or `latex_s3` (13/80) |
 
-**Collection.** Sampled from the project's frozen cs.CL corpus (~7,900 papers,
-arXiv primary category `cs.CL`), built from the unarXive release of parsed arXiv
-LaTeX. The 80 prompts are a subset of the 878-paper evaluation holdout
-(`data/splits/eval_grid_80.txt`), disjoint from the SFT training split.
-Regenerate with `scripts/build_eval_prompts.py`.
+**Collection.** Sampled from the project's frozen `cs.CL` corpus (~7,900 papers,
+arXiv primary category `cs.CL`), built from two pipelines over arXiv LaTeX source:
+the **unarXive** release of parsed arXiv (67 of the 80 prompts) and a **direct
+arXiv S3 LaTeX export** (13 of 80). The 80 prompts are a subset of the 878-paper
+evaluation holdout (`data/splits/eval_grid_80.txt`) and are **disjoint from the
+SFT training split** (`data/splits/sft.txt`; verified 0 overlap). Regenerate with
+`scripts/build_eval_prompts.py`.
 
-**Known biases / limitations.** English-only; single domain (NLP / cs.CL);
-skewed toward recent papers; abstracts reflect arXiv author writing styles and
-any selection bias in the unarXive parse. Scores are not representative of other
-domains or languages.
+**Known biases / limitations.** English-only; single domain (NLP / `cs.CL`);
+publication years span 2016–2025 but concentrate in **2021–2022 (~66% of
+prompts)**. Abstracts reflect arXiv author writing styles, and papers are limited
+to those whose LaTeX source parsed successfully (a selection bias). Scores are
+not representative of other domains, languages, or time periods.
