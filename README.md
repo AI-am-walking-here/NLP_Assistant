@@ -29,9 +29,11 @@ Grounded is a retrieval-augmented scientific writing assistant that generates NL
 └── docs/                  # eval workflow, model transfer, data acquisition
 ```
 
-**Included data:** corpus snapshot (`data/corpus/papers.jsonl.gz`, Git LFS), splits, SFT/RankRAG training JSONL, eval prompts — see [`data/DATASET_CARD.md`](data/DATASET_CARD.md) for collection, license, and known biases.
+**In Git:** training JSONL, splits, eval prompts, pinned eval runs (`runs/seg4_eval_*_2026-06-11-*/`), `results/main_table.json`. See [`data/DATASET_CARD.md`](data/DATASET_CARD.md).
 
-**Not included (regenerate locally):** parsed per-paper JSON (`data/parsed/`), FAISS index (`data/chunks/`, `data/indices/`), model weights, training checkpoints.
+**External archive** (~2.3 GB tar): corpus, pinned LoRA adapters, FAISS index — see [`data/ARTIFACTS_DOWNLOAD.md`](data/ARTIFACTS_DOWNLOAD.md). No Git LFS.
+
+**Not included:** parsed per-paper JSON (~13 GB), base model weights (`scripts/download_models.sh`).
 
 ---
 

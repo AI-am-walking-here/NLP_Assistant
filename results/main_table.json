@@ -33,12 +33,7 @@
       "verifier_url": "http://127.0.0.1:8765",
       "sft_adapter_dir": "runs/seg5_sft_train_2026-06-05-0617/adapter",
       "sft_run_dir": "runs/seg5_sft_train_2026-06-05-0617",
-      "rankrag_adapter_dir": "runs/seg6_rankrag_train_2026-06-05-0542/adapter",
-      "eval_run_dir": "runs/seg4_eval_full_2026-06-11-1237",
-      "sft_adapter_source": "latest_complete",
-      "generation_temperature": "0.4",
-      "generator_4bit": true,
-      "input_fingerprint": "d95fa16e31187a871580e58c5a7938f8ce96681dec645821c8fd724d21bf54a8"
+      "eval_run_dir": "runs/seg4_eval_full_minus_rerank_2026-06-11-1303",
     },
     {
       "system": "full_minus_sft",
@@ -52,6 +47,7 @@
       "index_mock_embed": false,
       "verifier_url": "http://127.0.0.1:8765",
       "generator_4bit": true,
+      "eval_run_dir": "runs/seg4_eval_full_minus_sft_2026-06-11-1323",
       "input_fingerprint": "e79196473b620ba07611599ed278a598bc1aa5230eb897ea79bbd407664f6b0e"
     }
   ],
