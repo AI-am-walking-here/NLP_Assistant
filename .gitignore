@@ -1,3 +1,7 @@
+# --- downloaded artifact bundle (2.3 GB; hosted externally, never commit) ---
+grounded-artifacts.tar.gz
+*.tar.gz
+
 # --- Python ---
 __pycache__/
 *.pyc
